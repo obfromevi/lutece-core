@@ -35,6 +35,7 @@ package fr.paris.lutece.portal.service.workflow;
 
 import fr.paris.lutece.api.user.User;
 import fr.paris.lutece.plugins.workflowcore.business.action.Action;
+import fr.paris.lutece.plugins.workflowcore.business.resource.ResourceHistory;
 import fr.paris.lutece.plugins.workflowcore.business.state.State;
 import fr.paris.lutece.util.ReferenceList;
 
@@ -281,21 +282,17 @@ public interface IWorkflowProvider
     String doValidateTasksForm( int nIdResource, String strResourceType, int nIdAction, HttpServletRequest request, Locale locale, User user );
 
     /**
-     * Get the confirmation of action processing 
+     * Get the HTML confirmation of action processing 
      * 
-     * @param nIdResource
-     *            the resource id
-     * @param strResourceType
-     *            the resource type
      * @param nIdAction
      *            the action id
      * @param locale
      *            the locale
-     * @param strTemplate
-     *            The template
+     * @param actionHistoryResourceIdList
+     *            the ids of the history of the action performed on a resource
      * @return the confirmation
      */
-    default String getDisplayProcessActionConfirmation( int nIdResource, String strResourceType, int nIdAction, Locale locale, String strTemplate )
+    default String getDisplayProcessActionConfirmation( int nIdAction, Locale locale, List<Integer> actionHistoryResourceIdList )
     {
     	return StringUtils.EMPTY;
     }
